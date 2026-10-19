@@ -2,25 +2,25 @@
 
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cacher's Food Deliveries</title>
-    <script src="index.js" defer></script>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cacher's Food Deliveries</title>
+        <script src="index.js" defer></script>
+    </head>
 
-<body>
-    <header>
-        <img src="images/Cachers.png" alt="logo" width="75px" height="75px" />
-        <b>Cacher's Food Deliveries</b>
-        <nav>
-            <ul class="navigation">
-                <li><a href="#landing">Home</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#dashboard.html">Dashboard</a></li>
-            </ul>
-        </nav>
-    </header>
+    <body>
+        <header>
+            <img src="images/Cachers.png" alt="logo" width="75px" height="75px" />
+            <b>Cacher's Food Deliveries</b>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="#landing">Home</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
 
     <main id="#landing">
 
@@ -37,6 +37,7 @@
         </section>
 
         <section id="marketing-materials">
+
             <div class="card">
                 <img src="images/deliveries.jpg" alt="deliveries">
                 <h2>
@@ -47,6 +48,7 @@
                     team ensures that every package is delivered with exceptional speed.
                 </p>
             </div>
+
             <div class="card">
                 <img src="images/safety.jpg" alt="safety">
                 <h2>
@@ -58,6 +60,7 @@
                     individualized care, ensuring a reliable and safe delivery experience every time.
                 </p>
             </div>
+
             <div class="card">
                 <img src="images/problem.jpg" alt="problem?">
                 <h2>
@@ -69,6 +72,7 @@
                     ensuring that your experience with us remains positive and worry-free.
                 </p>
             </div>
+
         </section>
 
         <section id="questions">
@@ -80,7 +84,9 @@
 
         <section id="contact">
             <blockquote>
-                <h3>"I was blown away by the speed and efficiency of Cherry Deliveries. I received my package in less than 24 hours!"</h3>
+                <h3>
+                    "I was blown away by the speed and efficiency of Cherry Deliveries. I received my package in less than 24 hours!"
+                </h3>
             </blockquote>
             <p>John Doe</p>
 
@@ -88,45 +94,64 @@
                 <div class="input-row">
                     <div class="input-group">
                         <label for="first-name">First Name</label>
-                        <input  
-                            id="first-name"
-                            name="first-name" 
+                        <input
+                            id="first-name" 
                             type="text" 
                             placeholder="Enter your first name" 
                             required 
                         /> 
                     </div>
+
                     <div class="input-group">
                         <label for="last-name">Last Name</label>
                         <input
                             id="last-name"
-                            name="last-name"
                             type="text"
                             placeholder="Enter your last name"
                             required
                         />
                     </div>
+
                 </div>
                 <div class="input-row">
-                    <label for="subject">Subject</label>
-                    <select id="subject" name="subject">
-                        <option value="general" selected>General</option>
-                        <option value="delivery">Delivery</option>
-                        <option value="refund">Refund</option>
-                    </select>
+                    <div class="input-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject">
+                            <option value="general" selected>General</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="refund">Refund</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" name="email" placeholder="Enter your email" required="">
+                    <input
+                            id="email"
+                            type="text"
+                            placeholder="Enter your email"
+                            required
+                        />    
                 </div>
-                <button type="submit">Submit</button>
+
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Enter your message"
+                        required
+                    ></textarea>
+                </div>
+
+                <button>Submit</button>
             </form>
         </section>
 
     </main>
 
     <footer>
-
+        <p>&#169 Cacher's Deliveries 2024</p>
     </footer>
 </body>
 

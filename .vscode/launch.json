@@ -5,10 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "editor-browser",
             "request": "launch",
-            "name": "Open index.html",
-            "file": "c:\\Users\\tse22\\OneDrive\\Documents\\GitHub\\code-along-LordStarkiller94\\index.html"
+            "name": "Launch Integrated Browser against localhost",
+            "url": "https://clientsideclass-git-main-tre17.vercel.app/",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
