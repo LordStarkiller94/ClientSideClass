@@ -85,7 +85,7 @@ nav ul li a:hover {
 .hero-content {
     width: 100%;
     max-width: 800px;
-    margin: 0;
+    margin: 0 auto;
     padding: 0 2rem;
     z-index: 8;
 }
