@@ -71,3 +71,21 @@ nav ul li a:hover {
     color: #be7b0f;
     text-decoration: underline;
 }
+
+#hero {
+    height: 50vh;
+    width: 100%;
+    background-image: "images/hero.jpg";
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0;
+    padding: 0 2rem;
+    z-index: 8;
+}
