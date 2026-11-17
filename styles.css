@@ -122,3 +122,23 @@ nav ul li a:hover {
     color: #ffffff;
     background: #be7b0f;
 }
+
+/*marketing materials*/
+
+#marketing-materials {
+    background: #f6f6f6;
+    padding: 4rem 0;
+    align-items: center;
+}
+
+.card-class {
+    width: 100%;
+    max-width: 1200px;
+    height: 300px;
+    display: flex;
+    margin: 4rem auto;
+    background-color: #ffffff;
+    border: 1px solid #00000011;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #00000011;
+}
