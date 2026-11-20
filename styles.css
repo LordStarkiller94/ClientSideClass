@@ -155,3 +155,62 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content: center;
 }
+
+/*questions*/
+
+#questions {
+    padding: 4rem 0;
+}
+
+#questions h2 {
+    margin: 0rem auto 2rem auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+#accordion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accordian-question {
+    background-color: #ffffff;
+    color: #915D0a;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.accordian-question:hover {
+    background-color: #f6f6f6;
+    color: #be780f;
+}
+
+.accordian-question.active {
+    color: #be780f;
+    font-weight: bold;
+}
+
+.accordian-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background-color: #ffffff;
+    font-weight: 300;
+    margin: 10px;
+}
+
+.accordian-answer.active {
+    max-height: 100px;
+}
+
+
+

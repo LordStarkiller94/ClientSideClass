@@ -39,5 +39,10 @@ qaItems.forEach((qaItem) => {
 
 	questionDiv.appendChild(answerDiv);
 
+	questionDiv.addEventListener("click", () => {
+		questionDiv.classList.toggle("active");
+		questionDiv.classList.toggle("active");
+	})
+
 	accordionDiv.appendChild(questionDiv);
 });
