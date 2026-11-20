@@ -176,7 +176,7 @@ nav ul li a:hover {
     margin: 0 auto;
 }
 
-.accordian-question {
+.accordion-question {
     background-color: #ffffff;
     color: #915D0a;
     cursor: pointer;
@@ -189,17 +189,17 @@ nav ul li a:hover {
     transition: background-color 0.3s ease;
 }
 
-.accordian-question:hover {
+.accordion-question:hover {
     background-color: #f6f6f6;
     color: #be780f;
 }
 
-.accordian-question.active {
+.accordion-question.active {
     color: #be780f;
     font-weight: bold;
 }
 
-.accordian-answer {
+.accordion-answer {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.25s ease;
@@ -208,7 +208,7 @@ nav ul li a:hover {
     margin: 10px;
 }
 
-.accordian-answer.active {
+.accordion-answer.active {
     max-height: 100px;
 }
 
