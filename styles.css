@@ -201,7 +201,7 @@ nav ul li a:hover {
 
 .accordion-answer {
     max-height: 0;
-    overflow: hidden;
+    overflow: scroll;
     transition: max-height 0.25s ease;
     background-color: #ffffff;
     font-weight: 300;
