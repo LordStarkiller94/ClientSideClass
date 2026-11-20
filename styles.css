@@ -201,7 +201,7 @@ nav ul li a:hover {
 
 .accordion-answer {
     max-height: 0;
-    overflow: scroll;
+    overflow: hidden;
     transition: max-height 0.25s ease;
     background-color: #ffffff;
     font-weight: 300;
@@ -212,5 +212,12 @@ nav ul li a:hover {
     max-height: 100px;
 }
 
-
-
+#contact {
+    background: #ffffff;
+    padding: 4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
