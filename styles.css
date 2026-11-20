@@ -315,3 +315,11 @@ form button:hover {
     color: #ffffff;
     background: #be780f;
 }
+
+footer {
+    background: #f6f6f6;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
