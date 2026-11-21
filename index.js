@@ -201,7 +201,7 @@ class CreateDeliveryService{
 
 const productDao = new SessionStorageProductDao();
 const deliveryDao = new SessionStorageDeliveryDao();
-const CreateDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
+const createDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
 
 const deliveryList = document.getElementById("deliveries-list");
 const deliveries = deliveryDao.getAll();
