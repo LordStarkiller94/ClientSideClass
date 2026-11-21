@@ -53,16 +53,21 @@ class DatabaseObject{
 	}
 }
 
-class Product {
-	constructor(name,inventory){}
+class Product extends DatabaseObject{
+	constructor(name,inventory){
+		super();
+		this.name = name;
+		this.inventory = inventory;
+	}
 
 	toString() {
-		return "${this.name}: ${Inventory} left in stock";
+		return "${this.name}: ${this.Inventory} left in stock";
 	}
 }
 
-class Delivery {
+class Delivery extends DatabaseObject {
 	constructor(params){
+		super();
 		const {address, scheduledTime, product, quantity} = params
 		this.address = address;
 		this.scheduledTime = scheduledTime;
@@ -108,16 +113,21 @@ class ProductDao {
 	}
 }
 
-class SessionStorageDaoProductDao extends ProductDao {
+class SessionStorageProductDao extends ProductDao {
 	constructor() {
+		super();
 		this.database = sessionStorage;
 	}
 	getAll() {
 		const productsAsJSON = this.database.getItem("products");
 		const productsData = productsAsJSON ? JSON.parse(productsAsJSON) : ProductDao.seeds;
+		// console.log("productsData");
+		// console.log(productsData);
 		return productsData.map((productData) => {
 			const {name, inventory} = productData;
-			new Product(name, inventory);
+			// console.log("productData");
+			// console.log(productData);
+			return new Product(name, inventory);
 		});
 	}
 
@@ -146,12 +156,15 @@ class DeliveryDao{
 
 class SessionStorageDeliveryDao extends DeliveryDao {
 	constructor() {
+		super();
 		this.database = sessionStorage;
 	}
 	
 	getAll() {
-		const deliveriesAsJSON = this.database.getItem("deliveries");
-		const deliveriesData = JSON.parse(deliveriesAsJSON);
+		const deliveriesinSessionStorage = this.database.getItem("deliveries");
+		// console.log("deliveriesData");
+		// console.log(deliveriesData);
+		const deliveriesData = deliveriesinSessionStorage ? JSON.parse(deliveriesAsJSON) : [];
 		return deliveriesData.map((deliveryData) => {
 			// const {address, scheduleTime, product, quantity} = deliveryData;
 			return Delivery.create(deliveryData)
@@ -166,10 +179,13 @@ class SessionStorageDeliveryDao extends DeliveryDao {
 }
 
 class CreateDeliveryService{
-	constructor(productDao, deliveryDao) {}
+	constructor(productDao, deliveryDao) {
+		this.productDao = productDao;
+		this.deliveryDao = deliveryDao;
+	}
 
 	CreateDelivery(productName, quantity, address, scheduledTime) {
-		const product = productDao.getProductByName(productName);
+		const product = this.productDao.getProductByName(productName);
 		const newInventory = product.inventory - quantity;
 		product.inventory = newInventory;
 		const deliveryData = {
@@ -178,12 +194,12 @@ class CreateDeliveryService{
 			address,
 			scheduledTime
 		};
-		deliveryDao.create(deliveryData);
+		this.deliveryDao.create(deliveryData);
 		productDao.update(product);
 	}
 }
 
-const productDao = new SessionStorageDaoProductDao();
+const productDao = new SessionStorageProductDao();
 const deliveryDao = new SessionStorageDeliveryDao();
 const CreateDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
 
@@ -199,7 +215,11 @@ const deliveries = deliveryDao.getAll();
 
 
 const productNameSelect = document.querySelector("#deliveries form select");
+// console.log("productNameSelect");
+// console.log(productNameSelect);
 const products = productDao.getAll();
+// console.log("products");
+// console.log(products);
 	for (let i = 0; i < products.length; i++){
 		const product = products[i];
 		const option = document.createElement("option");
