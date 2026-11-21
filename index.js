@@ -53,8 +53,8 @@ class DatabaseObject{
 	}
 }
 
-class Product extends DatabaseObject{
-	constructor(name,inventory){
+class Product extends DatabaseObject {
+	constructor(name, inventory) {
 		super();
 		this.name = name;
 		this.inventory = inventory;
@@ -218,8 +218,8 @@ const productNameSelect = document.querySelector("#deliveries form select");
 // console.log("productNameSelect");
 // console.log(productNameSelect);
 const products = productDao.getAll();
-// console.log("products");
-// console.log(products);
+console.log("products");
+console.log(products[0].toString());
 	for (let i = 0; i < products.length; i++){
 		const product = products[i];
 		const option = document.createElement("option");
