@@ -197,6 +197,17 @@ const deliveries = deliveryDao.getAll();
 		deliveryList.appendChild(deliveryLi);
 }	
 
+
+const productNameSelect = document.querySelector("#deliveries form select");
+const products = productDao.getAll();
+	for (let i = 0; i < products.length; i++){
+		const product = products[i];
+		const option = document.createElement("option");
+		option.innerText = product.toString();
+		option.setAttribute("value", product.name);
+		productNameSelect.appendChild(option);
+	}
+
 // class CookieStorageProductDao extends ProductDao {
 // 	constructor() {
 // 		this.database = document.cookie;
