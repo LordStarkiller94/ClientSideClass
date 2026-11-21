@@ -46,3 +46,162 @@ qaItems.forEach((qaItem) => {
 
 	accordionDiv.appendChild(questionDiv);
 });
+
+class DatabaseObject{
+	toString() {
+		throw new Error("Not Implemented");
+	}
+}
+
+class Product {
+	constructor(name,inventory){}
+
+	toString() {
+		return "${this.name}: ${Inventory} left in stock";
+	}
+}
+
+class Delivery {
+	constructor(params){
+		const {address, scheduledTime, product, quantity} = params
+		this.address = address;
+		this.scheduledTime = scheduledTime;
+		this.product = product;
+		this.quantity = quantity;
+	}
+
+	toString() {
+		return "Delivering ${quantity} of ${product} to ${address} at ${scheduledTime}";
+	}
+
+	static create(params){
+		// const {address, scheduledTime, product, quantity} = params
+		return new Delivery(params);
+	}
+}
+
+class ProductDao {
+	static seeds = [
+		{
+			name: "Apples",
+			inventory: 100,
+		},
+		{
+			name: "Bananas",
+			inventory: 90,
+		},
+		{
+			name: "Peaches",
+			inventory: 70,
+		},
+	];
+	getAll() {
+		throw new Error("Not implemented");
+	}
+
+	getProductByName(name) {
+		throw new Error("Not implemnented");
+	}
+
+	update(product) {
+		throw new Error("Not implemnented");
+	}
+}
+
+class SessionStorageDaoProductDao extends ProductDao {
+	constructor() {
+		this.database = sessionStorage;
+	}
+	getAll() {
+		const productsAsJSON = this.database.getItem("products");
+		const productsData = productsAsJSON ? JSON.parse(productsAsJSON) : ProductDao.seeds;
+		return productsData.map((productData) => {
+			const {name, inventory} = productData;
+			new Product(name, inventory);
+		});
+	}
+
+	getProductByName(name) {
+		const products = getAll();
+		return products.find((product) => product.name == name);
+	}
+
+
+	update(product) {
+		const existingProducts =this.getAll();
+		const indexToDelete = existingProducts.findIndex((productInList) => productInList.name == product.name);
+		existingProducts.splice(indexToDelete, 1, product);
+	}
+} 
+
+class DeliveryDao{
+	getAll() {
+		throw new Error("Not yet Implemented");
+	}
+
+	create(delivery) {
+		throw new Error("Not yet Implemented");
+	}
+}
+
+class SessionStorageDeliveryDao extends DeliveryDao {
+	constructor() {
+		this.database = sessionStorage;
+	}
+	
+	getAll() {
+		const deliveriesAsJSON = this.database.getItem("deliveries");
+		const deliveriesData = JSON.parse(deliveriesAsJSON);
+		return deliveriesData.map((deliveryData) => {
+			// const {address, scheduleTime, product, quantity} = deliveryData;
+			return Delivery.create(deliveryData)
+		});
+	}
+
+	create(delivery) {
+		const deliveries = this.getAll();
+		deliveries.push(delivery);
+		this.database.setItem("deliveries", JSON.stringify(deliveries));
+	}
+}
+
+class CreateDeliveryService{
+	constructor(productDao, deliveryDao) {}
+
+	CreateDelivery(productName, quantity, address, scheduledTime) {
+		const product = productDao.getProductByName(productName);
+		const newInventory = product.inventory - quantity;
+		product.inventory = newInventory;
+		const deliveryData = {
+			product,
+			quantity,
+			address,
+			scheduledTime
+		};
+		deliveryDao.create(deliveryData);
+		productDao.update(product);
+	}
+}
+
+const productDao = new SessionStorageDaoProductDao();
+const deliveryDao = new SessionStorageDeliveryDao();
+const CreateDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
+
+const deliveryList = document.getElementById("deliveries-list");
+const deliveries = deliveryDao.getAll();
+	for(let i=0; i < deliveries.length; i++){
+		const delivery = deliveries[i];
+		// const {address, scheduledTime, product, quantity} = delivery;
+		const deliveryLi = document.createElement("li");
+		deliveryList.textContent = delivery.toString();
+		deliveryList.appendChild(deliveryLi);
+}	
+
+// class CookieStorageProductDao extends ProductDao {
+// 	constructor() {
+// 		this.database = document.cookie;
+// 	}
+
+
+
+// }
