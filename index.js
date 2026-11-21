@@ -218,8 +218,8 @@ const productNameSelect = document.querySelector("#deliveries form select");
 // console.log("productNameSelect");
 // console.log(productNameSelect);
 const products = productDao.getAll();
-console.log("products");
-console.log(products[0].toString());
+// console.log("products");
+// console.log(products[0].toString());
 	for (let i = 0; i < products.length; i++){
 		const product = products[i];
 		const option = document.createElement("option");
