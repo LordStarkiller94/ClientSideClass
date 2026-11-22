@@ -61,7 +61,7 @@ class Product extends DatabaseObject {
 	}
 
 	toString() {
-		return '${this.name}: ${this.inventory} left in stock';
+		return "${this.name}: ${this.inventory} left in stock";
 	}
 }
 
@@ -76,7 +76,7 @@ class Delivery extends DatabaseObject {
 	}
 
 	toString() {
-		return 'Delivering ${quantity} of ${product} to ${address} at ${scheduledTime}';
+		return "Delivering ${quantity} of ${product} to ${address} at ${scheduledTime}";
 	}
 
 	static create(params){
