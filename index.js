@@ -104,8 +104,13 @@ class ProductDao {
 		throw new Error("Not implemented");
 	}
 
+	// getProductByName(name) {
+	// 	throw new Error("Not implemnented");
+	// }
+
 	getProductByName(name) {
-		throw new Error("Not implemnented");
+		const products = this.getAll();
+		return products.find((product) => product.name == name);
 	}
 
 	update(product) {
@@ -131,10 +136,10 @@ class SessionStorageProductDao extends ProductDao {
 		});
 	}
 
-	getProductByName(name) {
-		const products = this.getAll();
-		return products.find((product) => product.name == name);
-	}
+	// getProductByName(name) {
+	// 	const products = this.getAll();
+	// 	return products.find((product) => product.name == name);
+	// }
 
 
 	update(product) {
@@ -158,20 +163,27 @@ class CookieStorageProductDao extends ProductDao {
 
 	getAll() {
 		const cookieValue = document.cookie
-			.at(" ; ")
+			.split("; ")
 			.find((row) => row.startsWith("products"))
-			?.split("-")[1];
+			?.split("=")[1];
 		
-		const productsData = cookieValue ? JSON.parse(productsAsJSON) : ProductDao.seeds;
-		return productsData.map(productData => new Product(productData.name, productData.inventory),)
+		const productsData = cookieValue ? JSON.parse(cookieValue) : ProductDao.seeds;
+		return productsData.map(
+			(productData) => new Product(productData.name, productData.inventory),
+		);
 	}
 
-	create(product) {
-		const existingProducts = this.getall();
+	update(product) {
+		const existingProducts = this.getAll();
 		const indexToDelete = existingProducts.findIndex(
-			(productInList) => productInList.name == product.name,
-		)
-	}	
+			(productInList) => productInList.name == product.name);
+			existingProducts.splice(indexToDelete, 1, product);
+			// console.log("IndexToDelete");
+			// console.log(indexToDelete);
+			document.cookie = `products=${JSON.stringify(existingProducts)}`;
+			// console.log("existingProducts");
+			// console.log(existingProducts);
+	}
 }
 
 class DeliveryDao{
