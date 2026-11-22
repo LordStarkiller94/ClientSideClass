@@ -223,7 +223,6 @@ const deliveries = deliveryDao.getAll();
 		deliveryList.appendChild(deliveryLi);
 }	
 
-
 const productNameSelect = document.querySelector("#deliveries form select");
 // console.log("productNameSelect");
 // console.log(productNameSelect);
@@ -258,14 +257,12 @@ function handleChangetoProductName(event){
 
 productNameSelect.addEventListener("change", handleChangetoProductName);
 
-
-
 const createDeliveryForm = document.querySelector("#deliveries form");
 // console.log("createDeliveryForm");
 // console.log(createDeliveryForm);
 // console.log("About to submit Form...");
 createDeliveryForm.addEventListener("submit" , (event) => {
-	event.preventDefault();
+	// event.preventDefault();
 	// console.log("Submitting form...")
 	const formData = new FormData(event.target);
 	const productName = formData.get("productName");
