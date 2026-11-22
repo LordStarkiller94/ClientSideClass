@@ -227,6 +227,7 @@ const deliveries = deliveryDao.getAll();
 const productNameSelect = document.querySelector("#deliveries form select");
 // console.log("productNameSelect");
 // console.log(productNameSelect);
+const quantityInput = document.querySelector("#deliveries form input[name='quantity']");
 const products = productDao.getAll();
 // console.log("products");
 // console.log(products[0].toString());
@@ -235,18 +236,29 @@ const products = productDao.getAll();
 		const option = document.createElement("option");
 		option.innerText = product.toString();
 		option.setAttribute("value", product.name);
+		const existingInventory = product.inventory;
+		if(i ==0){
+			// console.log("product");
+			// console.log(product);
+			quantityInput.setAttribute("max", existingInventory);
+			// console.log('quantityInput.getAttribute("max")');
+			// console.log(quantityInput.getAttribute("max"));
+		}
+		if(existingInventory > 0) {
 		productNameSelect.appendChild(option);
+		}
 	}
 
 function handleChangetoProductName(event){
-	const quantityInput = document.querySelector("deliveries form input [name='quantity']");
 	const productName = event.target.value;
 	const selectedProduct = productDao.getProductByName(productName);
 	const existingInventory = selectedProduct.inventory;	
-	quantityInput.setAttribute("max", );
+	quantityInput.setAttribute("max", existingInventory);
 }
 
 productNameSelect.addEventListener("change", handleChangetoProductName);
+
+
 
 const createDeliveryForm = document.querySelector("#deliveries form");
 // console.log("createDeliveryForm");
