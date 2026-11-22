@@ -150,6 +150,30 @@ class SessionStorageProductDao extends ProductDao {
 	}
 } 
 
+class CookieStorageProductDao extends ProductDao {
+	constructor(){
+		super();
+		this.database = document.cookie;
+	}
+
+	getAll() {
+		const cookieValue = document.cookie
+			.at(" ; ")
+			.find((row) => row.startsWith("products"))
+			?.split("-")[1];
+		
+		const productsData = cookieValue ? JSON.parse(productsAsJSON) : ProductDao.seeds;
+		return productsData.map(productData => new Product(productData.name, productData.inventory),)
+	}
+
+	create(product) {
+		const existingProducts = this.getall();
+		const indexToDelete = existingProducts.findIndex(
+			(productInList) => productInList.name == product.name,
+		)
+	}	
+}
+
 class DeliveryDao{
 	getAll() {
 		throw new Error("Not yet Implemented");
@@ -209,7 +233,8 @@ class CreateDeliveryService{
 	}
 }
 
-const productDao = new SessionStorageProductDao();
+// const productDao = new SessionStorageProductDao();
+const productDao = new CookieStorageProductDao();
 const deliveryDao = new SessionStorageDeliveryDao();
 const createDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
 
@@ -271,11 +296,3 @@ createDeliveryForm.addEventListener("submit" , (event) => {
 	const quantity = formData.get("quantity");
 	createDeliveryService.CreateDelivery(productName, quantity, address, scheduledTime);
 }); 
-// c1lass CookieStorageProductDao extends ProductDao {
-// 	constructor() {
-// 		this.database = document.cookie;
-// 	}
-
-
-
-// }
