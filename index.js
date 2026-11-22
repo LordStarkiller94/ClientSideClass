@@ -228,7 +228,17 @@ const products = productDao.getAll();
 		productNameSelect.appendChild(option);
 	}
 
-// class CookieStorageProductDao extends ProductDao {
+const createDeliveryForm = document.querySelector("deliveries form");
+createDeliveryForm.addEventListener("submit" , (event) => {
+	preventDefault();
+	const formData = new FormData(event.target);
+	const productName = formData.get("address")
+	const scheduledTime = formData.get("scheduledTime")
+	const address = formData.get("scheduledTime")
+	const quantity = formData.get("quantity")
+	createDeliveryService.createDelivery(productName, quantity, address, scheduledTime);
+});
+// c1lass CookieStorageProductDao extends ProductDao {
 // 	constructor() {
 // 		this.database = document.cookie;
 // 	}
