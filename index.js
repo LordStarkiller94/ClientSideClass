@@ -231,6 +231,7 @@ const products = productDao.getAll();
 const createDeliveryForm = document.querySelector("deliveries form");
 createDeliveryForm.addEventListener("submit" , (event) => {
 	preventDefault();
+	console.log("Submitting form...")
 	const formData = new FormData(event.target);
 	const productName = formData.get("address")
 	const scheduledTime = formData.get("scheduledTime")
