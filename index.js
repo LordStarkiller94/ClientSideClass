@@ -141,6 +141,7 @@ class SessionStorageProductDao extends ProductDao {
 		const existingProducts = this.getAll();
 		const indexToDelete = existingProducts.findIndex((productInList) => productInList.name == product.name);
 		existingProducts.splice(indexToDelete, 1, product);
+		this.database.setItem("products", JSON.stringify(productsList));
 	}
 } 
 
