@@ -139,9 +139,14 @@ class SessionStorageProductDao extends ProductDao {
 
 	update(product) {
 		const existingProducts = this.getAll();
-		const indexToDelete = existingProducts.findIndex((productInList) => productInList.name == product.name);
-		existingProducts.splice(indexToDelete, 1, product);
+		const indexToDelete = existingProducts.findIndex(
+			(productInList) => productInList.name == product.name);
+			existingProducts.splice(indexToDelete, 1, product);
+			// console.log("IndexToDelete");
+			// console.log(indexToDelete);
 		this.database.setItem("products", JSON.stringify(existingProducts));
+			// console.log("existingProducts");
+			// console.log(existingProducts);
 	}
 } 
 
@@ -189,6 +194,8 @@ class CreateDeliveryService{
 		const product = this.productDao.getProductByName(productName);
 		const newInventory = product.inventory - quantity;
 		product.inventory = newInventory;
+		// console.log("newInventory");
+		// console.log(newInventory);
 		const deliveryData = {
 			product,
 			quantity,
@@ -196,6 +203,8 @@ class CreateDeliveryService{
 			scheduledTime
 		};
 		this.deliveryDao.create(deliveryData);
+		// console.log("product");
+		// console.log(product);
 		productDao.update(product);
 	}
 }
@@ -229,6 +238,16 @@ const products = productDao.getAll();
 		productNameSelect.appendChild(option);
 	}
 
+function handleChangetoProductName(event){
+	const quantityInput = document.querySelector("deliveries form input [name='quantity']");
+	const productName = event.target.value;
+	const selectedProduct = productDao.getProductByName(productName);
+	const existingInventory = selectedProduct.inventory;	
+	quantityInput.setAttribute("max", );
+}
+
+productNameSelect.addEventListener("change", handleChangetoProductName);
+
 const createDeliveryForm = document.querySelector("#deliveries form");
 // console.log("createDeliveryForm");
 // console.log(createDeliveryForm);
@@ -242,7 +261,7 @@ createDeliveryForm.addEventListener("submit" , (event) => {
 	const address = formData.get("address");
 	const quantity = formData.get("quantity");
 	createDeliveryService.CreateDelivery(productName, quantity, address, scheduledTime);
-});
+}); 
 // c1lass CookieStorageProductDao extends ProductDao {
 // 	constructor() {
 // 		this.database = document.cookie;
