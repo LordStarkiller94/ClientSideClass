@@ -76,7 +76,7 @@ class Delivery extends DatabaseObject {
 	}
 
 	toString() {
-		return `Delivering ${this.quantity} of ${this.product} to ${this.address} at ${this.scheduledTime}`;
+		return `Delivering ${this.quantity} ${this.product.name} to ${this.address} at ${this.scheduledTime}`;
 	}
 
 	static create(params){
