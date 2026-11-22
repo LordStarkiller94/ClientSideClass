@@ -220,6 +220,26 @@ class SessionStorageDeliveryDao extends DeliveryDao {
 	}
 }
 
+class CookieStorageDeliveryDao extends DeliveryDao {
+	getAll() {
+		const cookieValue = document.cookie
+			.split("; ")
+			.find((row) => row.startsWith("deliveries"))
+			?.split("=")[1];
+		
+		const deliveriesData = cookieValue ? JSON.parse(cookieValue) : [];
+		return deliveriesData.map(
+			(deliveryData) => new Product(deliveryData.name, deliveryData.inventory),
+		);
+	}
+
+	create(delivery) {
+		const existingDeliveries = this.getAll();
+		existingDeliveries.push(delivery);
+		document.cookie = `products=${JSON.stringify(existingDeliveries)}`;
+	}
+}
+
 class CreateDeliveryService{
 	constructor(productDao, deliveryDao) {
 		this.productDao = productDao;
@@ -241,13 +261,14 @@ class CreateDeliveryService{
 		this.deliveryDao.create(deliveryData);
 		// console.log("product");
 		// console.log(product);
-		productDao.update(product);
+		this.productDao.update(product);
 	}
 }
 
 // const productDao = new SessionStorageProductDao();
 const productDao = new CookieStorageProductDao();
-const deliveryDao = new SessionStorageDeliveryDao();
+// const deliveryDao = new SessionStorageDeliveryDao();
+const deliveryDao = new CookieStorageDeliveryDao();
 const createDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
 
 const deliveryList = document.getElementById("deliveries-list");
