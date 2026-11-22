@@ -61,7 +61,7 @@ class Product extends DatabaseObject {
 	}
 
 	toString() {
-		return '${this.name}: ${this.Inventory} left in stock';
+		return '${this.name}: ${this.inventory} left in stock';
 	}
 }
 
