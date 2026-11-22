@@ -76,7 +76,7 @@ class Delivery extends DatabaseObject {
 	}
 
 	toString() {
-		return `Delivering ${quantity} of ${product} to ${address} at ${scheduledTime}`;
+		return `Delivering ${this.quantity} of ${this.product} to ${this.address} at ${this.scheduledTime}`;
 	}
 
 	static create(params){
@@ -132,13 +132,13 @@ class SessionStorageProductDao extends ProductDao {
 	}
 
 	getProductByName(name) {
-		const products = getAll();
+		const products = this.getAll();
 		return products.find((product) => product.name == name);
 	}
 
 
 	update(product) {
-		const existingProducts =this.getAll();
+		const existingProducts = this.getAll();
 		const indexToDelete = existingProducts.findIndex((productInList) => productInList.name == product.name);
 		existingProducts.splice(indexToDelete, 1, product);
 	}
@@ -164,7 +164,7 @@ class SessionStorageDeliveryDao extends DeliveryDao {
 		const deliveriesinSessionStorage = this.database.getItem("deliveries");
 		// console.log("deliveriesData");
 		// console.log(deliveriesData);
-		const deliveriesData = deliveriesinSessionStorage ? JSON.parse(deliveriesAsJSON) : [];
+		const deliveriesData = deliveriesinSessionStorage ? JSON.parse(deliveriesinSessionStorage) : [];
 		return deliveriesData.map((deliveryData) => {
 			// const {address, scheduleTime, product, quantity} = deliveryData;
 			return Delivery.create(deliveryData)
@@ -209,7 +209,7 @@ const deliveries = deliveryDao.getAll();
 		const delivery = deliveries[i];
 		// const {address, scheduledTime, product, quantity} = delivery;
 		const deliveryLi = document.createElement("li");
-		deliveryList.textContent = delivery.toString();
+		deliveryLi.textContent = delivery.toString();
 		deliveryList.appendChild(deliveryLi);
 }	
 
@@ -229,15 +229,18 @@ const products = productDao.getAll();
 	}
 
 const createDeliveryForm = document.querySelector("deliveries form");
+// console.log("createDeliveryForm");
+// console.log(createDeliveryForm);
+// console.log("About to submit Form...");
 createDeliveryForm.addEventListener("submit" , (event) => {
-	preventDefault();
-	console.log("Submitting form...")
+	event.preventDefault();
+	// console.log("Submitting form...")
 	const formData = new FormData(event.target);
-	const productName = formData.get("address")
-	const scheduledTime = formData.get("scheduledTime")
-	const address = formData.get("scheduledTime")
-	const quantity = formData.get("quantity")
-	createDeliveryService.createDelivery(productName, quantity, address, scheduledTime);
+	const productName = formData.get("productName");
+	const scheduledTime = formData.get("scheduledTime");
+	const address = formData.get("address");
+	const quantity = formData.get("quantity");
+	createDeliveryService.CreateDelivery(productName, quantity, address, scheduledTime);
 });
 // c1lass CookieStorageProductDao extends ProductDao {
 // 	constructor() {
