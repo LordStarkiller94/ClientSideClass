@@ -563,6 +563,16 @@ video {
   margin-bottom: 2rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -629,6 +639,10 @@ video {
 
 .min-w-56 {
   min-width: 14rem;
+}
+
+.max-w-\[1394px\] {
+  max-width: 1394px;
 }
 
 .flex-1 {
@@ -782,6 +796,11 @@ video {
 
   .sm\:flex-row {
     flex-direction: row;
+  }
+
+  .sm\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
