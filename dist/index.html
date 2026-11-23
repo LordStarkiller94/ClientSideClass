@@ -10,7 +10,7 @@
         <link 
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet" >
         <title>Cacher's Food Deliveries</title>
-        <script src="index.js" defer></script>
+        <script src="/index.js" defer></script>
         
       <link rel="stylesheet" crossorigin href="/assets/index-DiODk-He.css">
     </head>
@@ -93,6 +93,26 @@
                 </div>
             </div>
 
+        </section>
+
+        <section id="deliveries">
+            <h2>Deliveries</h2>
+            <ul id="deliveries-list">
+
+            </ul>
+            <form>
+                <label for="address">Address:</label>
+                <input  id= "address" type="text" name="address" />
+                <label for="scheduledTime">Scheduled Time</label>
+                <input  id= "scheduledTime" type="date" name="scheduledTime" />
+                <label for="productName">Product</label>
+                <select id="productName" name="productName">
+
+                </select>
+                <label for="quantity">Quantity</label>
+                <input id="productName" type="number" name="quantity"/>
+                <button type="submit">Create Delivery</button>
+            </form>
         </section>
 
         <section id="questions">
