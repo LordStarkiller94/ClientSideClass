@@ -226,17 +226,18 @@ class CookieStorageDeliveryDao extends DeliveryDao {
 			.split("; ")
 			.find((row) => row.startsWith("deliveries"))
 			?.split("=")[1];
-		
+		// console.log("cookieValue");
+		// console.log(cookieValue);
 		const deliveriesData = cookieValue ? JSON.parse(cookieValue) : [];
 		return deliveriesData.map(
-			(deliveryData) => new Product(deliveryData.name, deliveryData.inventory),
+			(deliveryData) => new Delivery(deliveryData),
 		);
 	}
 
 	create(delivery) {
 		const existingDeliveries = this.getAll();
 		existingDeliveries.push(delivery);
-		document.cookie = `products=${JSON.stringify(existingDeliveries)}`;
+		document.cookie = `deliveries=${JSON.stringify(existingDeliveries)}`;
 	}
 }
 
